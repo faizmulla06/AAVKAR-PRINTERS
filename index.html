@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
+     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    
+  </head>
+
+  <body>
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights">
+      <a-assets>
+         
+        <img id="web_btn" src="./Assets/web.png" crossorigin="anonymous">
+        <img id="location_btn" src="./Assets/location.png" crossorigin="anonymous">
+        <img id="wa_btn" src="./Assets/wa.png" crossorigin="anonymous">
+        <img id="mail_btn" src="./Assets/mail.png" crossorigin="anonymous">
+        <img id="phone_btn" src="./Assets/phone.png" crossorigin="anonymous">
+        <img id="insta_btn" src="./Assets/insta.png" crossorigin="anonymous">
+            
+      </a-assets>
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+
+      <a-entity id="example-target" mindar-image-target="targetIndex: 0">
+       
+        <a-entity id="mail_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="-0.3 -0.4 0" rotation="0 0 0" material="src: #mail_btn; opacity: 1; transparent: true;"></a-entity> 
+        <a-entity id="wa_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="0 -0.4 0" rotation="0 0 0" material="src: #wa_btn; opacity: 1; transparent: true;"></a-entity> 
+        <a-entity id="phone_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="0.3 -0.4 0" rotation="0 0 0" material="src: #phone_btn; opacity: 1; transparent: true;"></a-entity> 
+       
+        <a-entity id="web_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="-0.3 -0.65 0" rotation="0 0 0" material="src: #web_btn; opacity: 1; transparent: true;"></a-entity> 
+        <a-entity id="location_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="0 -0.65 0" rotation="0 0 0" material="src: #location_btn; opacity: 1; transparent: true;"></a-entity> 
+        <a-entity id="insta_click" class="clickable" geometry="primitive: plane; height: 0.18; width: 0.18;" position="0.3 -0.65 0" rotation="0 0 0" material="src: #insta_btn; opacity: 1; transparent: true;"></a-entity> 
+      
+      </a-entity>   
+    </a-scene>
+
+    <script type="text/javascript">
+     
+      const exampleTarget = document.querySelector('#example-target');
+      exampleTarget.addEventListener("targetFound", event => {
+        console.log("target found");
+
+      });
+
+      // detect target lost
+      exampleTarget.addEventListener("targetLost", event => {
+        console.log("target lost");
+      });
+
+        const mail_click = document.querySelector('#mail_click');
+       mail_click.addEventListener("click", event => {
+       window.location.href = "mailto:inquiry@impresariotech.io";
+       });
+      
+       const web_click = document.querySelector('#web_click');
+       web_click.addEventListener("click", event => {
+       window.location.href = "http://www.impresariotech.io/";
+       });
+
+       const phone_click = document.querySelector('#phone_click');
+       phone_click.addEventListener("click", event => {
+       window.location.href = "tel:+919818051166";
+       });
+
+       const location_click = document.querySelector('#location_click');
+       location_click.addEventListener("click", event => {
+       window.location.href = "https://goo.gl/maps/vzhP4NqVuNAQED3Z8";
+       });
+
+       const wa_click = document.querySelector('#wa_click');
+       wa_click.addEventListener("click", event => {
+       window.location.href = "https://wa.me/+919818051166";
+       });
+        
+       const linkedin_click = document.querySelector('#linkedin_click');
+       linkedin_click.addEventListener("click", event => {
+       window.location.href = "https://www.linkedin.com/company/impresariotech-io/";
+       });
+    </script>
+  </body>
+</html>
